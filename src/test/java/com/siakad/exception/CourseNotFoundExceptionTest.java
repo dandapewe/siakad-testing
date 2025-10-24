@@ -11,7 +11,7 @@ public class CourseNotFoundExceptionTest {
     @Test
     @DisplayName("Test case exception yang dilempar ketika mata kuliah tidak ditemukan dengan message")
     void testCourseNotFoundExceptionTestWithMessage() {
-        String message = "Course is not found";
+        String message = "Course not found";
         CourseNotFoundException exception = new CourseNotFoundException(message);
 
         assertEquals(message, exception.getMessage());
