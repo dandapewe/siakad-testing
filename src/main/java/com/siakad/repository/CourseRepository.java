@@ -7,7 +7,7 @@ import com.siakad.model.Course;
  * Interface ini akan di-stub atau di-mock dalam unit testing
  */
 
-public class CourseRepository {
+public interface CourseRepository {
 
     /**
      * Mencari mata kuliah berdasarkan course code

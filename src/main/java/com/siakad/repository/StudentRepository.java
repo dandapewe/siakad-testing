@@ -11,7 +11,7 @@ import java.util.List;
  * Interface ini akan di-stub atau di-mock dalam unit testing
  */
 
-public class StudentRepository {
+public interface StudentRepository {
 
     /**
      * Mencari mahasiswa berdasarkan student ID
