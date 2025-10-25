@@ -159,4 +159,48 @@ public class GradeCalculatorTest {
     void testDetermineStatusAcademicSem5Suspended() {
         assertEquals("SUSPENDED", calculator.determineAcademicStatus(1, 7));
     }
+
+    /*
+    Test case calculateMaxCredits dengan aturan sebagai berikut
+     * - IPK >= 3.0: maksimal 24 SKS
+     * - IPK 2.5-2.99: maksimal 21 SKS
+     * - IPK 2.0-2.49: maksimal 18 SKS
+     * - IPK < 2.0: maksimal 15 SKS
+    */
+
+    @Test
+    @DisplayName("test case calculateMaxCredits dengan GPA < 1")
+    void testCalculateMaxCreditsGPAKurangDariSatu() {
+        assertThrows(IllegalArgumentException.class, () -> calculator.calculateMaxCredits(-1));
+    }
+
+    @Test
+    @DisplayName("test case calculateMaxCredits dengan GPA > 4")
+    void testCalculateMaxCreditsGPALebihDariEmpat() {
+        assertThrows(IllegalArgumentException.class, () -> calculator.calculateMaxCredits(4.1));
+    }
+
+    @Test
+    @DisplayName("test case calculateMaxCredits dengan GPA > 3.0")
+    void testCalculateMaxCredits24SKS() {
+        assertEquals(24, calculator.calculateMaxCredits(3));
+    }
+
+    @Test
+    @DisplayName("test case calculateMaxCredits dengan 2.5 <= GPA < 3")
+    void testCalculateMaxCredits21SKS() {
+        assertEquals(21, calculator.calculateMaxCredits(2.5));
+    }
+
+    @Test
+    @DisplayName("test case calculateMaxCredits dengan 2 <= GPA < 2.5")
+    void testCalculateMaxCredits18SKS() {
+        assertEquals(18, calculator.calculateMaxCredits(2));
+    }
+
+    @Test
+    @DisplayName("test case calculateMaxCredits dengan GPA < 2")
+    void testCalculateMaxCredits15SKS() {
+        assertEquals(15, calculator.calculateMaxCredits(1));
+    }
 }
