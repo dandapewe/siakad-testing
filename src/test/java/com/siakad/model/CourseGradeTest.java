@@ -46,5 +46,4 @@ public class CourseGradeTest {
         assertEquals(4, grade.getCredits());
         assertEquals(2.0, grade.getGradePoint());
     }
-
 }
