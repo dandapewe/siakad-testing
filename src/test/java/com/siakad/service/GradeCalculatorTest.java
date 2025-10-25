@@ -94,4 +94,69 @@ public class GradeCalculatorTest {
     Semester 5+, GPA < 2.0
     */
 
+    @Test
+    @DisplayName("Test case determineAcademicStatus dengan GPA < 0")
+    void testDetermineAcademicStatusGPAKurangDariNol() {
+        assertThrows(IllegalArgumentException.class, () -> calculator.determineAcademicStatus(-1, 5));
+    }
+
+    @Test
+    @DisplayName("Test case determineAcademicStatus dengan GPA > 4.00")
+    void testDetermineAcademicStatusGPALebihDariEmpat() {
+        assertThrows(IllegalArgumentException.class, () -> calculator.determineAcademicStatus(5, 5));
+    }
+
+    @Test
+    @DisplayName("Test case determineAcademicStatus dengan Semester < 1")
+    void testDetermineAcademicStatusSemesterKurangDariSatu() {
+        assertThrows(IllegalArgumentException.class, () -> calculator.determineAcademicStatus(2.0, -1));
+    }
+
+    @Test
+    @DisplayName("Test case determineStatusAcademic Semester 1-2 dengan GPA >= 2")
+    void testDetermineStatusAcademicSem12Active() {
+        assertEquals("ACTIVE", calculator.determineAcademicStatus(2, 2));
+    }
+
+    @Test
+    @DisplayName("Test case dengan determineAcademicStatus Semester 1-2 dengan GPA < 2")
+    void testDetermineStatusAcademicSem12Probation() {
+        assertEquals("PROBATION", calculator.determineAcademicStatus(1, 1));
+    }
+
+    @Test
+    @DisplayName("Test case dengan determineAcademicStatus Semester 3-4 dengan GPA >= 2.25")
+    void testDetermineStatusAcademicSem34Active() {
+        assertEquals("ACTIVE", calculator.determineAcademicStatus(2.5, 3));
+    }
+
+    @Test
+    @DisplayName("Test case dengan determineAcademicStatus Semester 3-4 dengan GPA >= 2.00")
+    void testDetermineStatusAcademicSem34Probation() {
+        assertEquals("PROBATION", calculator.determineAcademicStatus(2, 4));
+    }
+
+    @Test
+    @DisplayName("Test case dengan determineAcademicStatus Semester 3-4 dengan GPA < 2.00")
+    void testDetermineStatusAcademicSem34Suspended() {
+        assertEquals("SUSPENDED", calculator.determineAcademicStatus(1.5, 4));
+    }
+
+    @Test
+    @DisplayName("Test case dengan determineAcademicStatus Semester 5++ dengan GPA >= 2.5")
+    void testDetermineStatusAcademicSem5Active() {
+        assertEquals("ACTIVE", calculator.determineAcademicStatus(2.5, 5));
+    }
+
+    @Test
+    @DisplayName("Test case dengan determineAcademicStatus Semester 5++ dengan GPA >= 2.0")
+    void testDetermineStatusAcademicSem5Probation() {
+        assertEquals("PROBATION", calculator.determineAcademicStatus(2, 6));
+    }
+
+    @Test
+    @DisplayName("Test case dengan determineAcademicStatus Semester 5++ dengan GPA < 2.0")
+    void testDetermineStatusAcademicSem5Suspended() {
+        assertEquals("SUSPENDED", calculator.determineAcademicStatus(1, 7));
+    }
 }
