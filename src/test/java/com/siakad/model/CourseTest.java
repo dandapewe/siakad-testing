@@ -50,7 +50,7 @@ public class CourseTest {
 
     @Test
     @DisplayName("Test case getter dan setteer")
-    void testGetAndSet() {
+    void testGetterAndSetter() {
         // Mengubah (Set) setiap parameter
         course.setCourseCode("CS002");
         course.setCourseName("Forensik Digital");
